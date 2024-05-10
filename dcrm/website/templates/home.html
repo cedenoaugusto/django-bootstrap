@@ -1,0 +1,26 @@
+{% extends 'master_page.html' %}
+
+{% block content %}
+<!-- <h1>Hello world!</h1> -->
+
+{% if user.is_authenticated %}
+    <p>Usuario autenticado...</p>
+{% else %}
+    <div class="col-md-6 offset-md-3">
+        <form method="post" action="{% url 'home' %}">
+            <h1>Autenticacion</h1>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="txtNombre" class="form-label">Nombre</label>
+                <input type="text" required placeholder="Alias" class="form-control" id="txtNombre" name="txtNombre" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="txtContrasena" class="form-label">Password</label>
+                <input type="password" required placeholder="Contraseña" class="form-control" id="txtContrasena" name="txtContrasena">
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+    </div>
+{% endif %}
+
+{% endblock %}
